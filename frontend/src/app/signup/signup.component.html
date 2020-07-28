@@ -1,1 +1,40 @@
-<p>signup works!</p>
+<article id="signup_article" class="col-md-6">
+    <form #userForm="ngForm" (ngSubmit)="registerUser(userForm)">
+        
+        <div class="form-group">
+            <label for="image">Upload Profile</label>
+            <input ngModel #img="ngModel" required type="file" name="image" id="image" class="form-control">
+            <div>
+                <span *ngIF="img.touched && !img.valid" class="alert"> required </span>
+            </div>    
+        </div>
+        <div class="form-group">
+            <label  for="name">Name</label>
+            <input ngModel #name="ngModel" required minlength="3" maxlength="25" type="text" name="name" id="name" class="form-control">
+            <div>
+                <span *ngIF="name.dirty && name.invalid" class="alert"> required </span>
+            </div>  
+        </div>
+        <div class="form-group">
+            <label  for="email">Email</label>
+            <input ngModel required type="email" name="email" id="email" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label  for="password" show>Password</label>
+            <input ngModel required minlength="8" maxlength="25" type="password" name="password" id="password" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label  for="age">Your Age</label>
+            <input ngModel required type="number" name="age" id="age" min="8" max="150" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label  for="dob">Date of Birth</label>
+            <input ngModel required type="date" name="dob" id="dob" class="form-control">
+        </div>
+
+        <button [attr.disabled]="disbaleSubmit ? '' : null"  type="submit" name="submit" class="btn btn-primary">Registor</button>
+    </form>
+</article>

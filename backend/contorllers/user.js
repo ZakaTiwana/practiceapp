@@ -56,7 +56,6 @@ const addNewUser = async (req,res,next) =>{
         if(!req.file) throw new ErrorHandler(400,"image is required");
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            // console.error(errors.mapped());
             throw new ErrorHandler(400,errors.array()[0].msg);
         }
         const dob = Date.parse(req.body.dob);
@@ -71,6 +70,7 @@ const addNewUser = async (req,res,next) =>{
         if(req.file) await fs.promises.unlink(path.join(__dirname,"..","assets",req.file.filename));
         if(error.code = 11000) // if duplicate in db
             error.statusCode = 400; // set bad request
+            error.message = "email already registered";
         next(error);
     }
 }

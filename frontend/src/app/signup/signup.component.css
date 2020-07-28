@@ -1,0 +1,15 @@
+#signup_article{
+    margin: 0 auto;
+}
+
+input.ng-invalid{
+    border-left: red solid 5px;
+}
+
+input.ng-valid{
+    border-left: yellowgreen solid 5px;
+}
+
+input.ng-pristine{
+    border-left: yellow solid 5px;
+}
