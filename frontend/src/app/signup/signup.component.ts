@@ -18,4 +18,5 @@ export class SignupComponent implements OnInit {
     if(userForm.valid) this.disbaleSubmit = true;
   }
 
+  log = (x) => {console.log(x)};
 }

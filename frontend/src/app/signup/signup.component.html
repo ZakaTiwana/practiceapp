@@ -45,7 +45,10 @@
 
         <div class="form-group">
             <label  for="dob">Date of Birth</label>
-            <input ngModel required type="date" name="dob" id="dob" class="form-control">
+            <input ngModel #dob="ngModel" required type="date" name="dob" id="dob" class="form-control">
+            <div *ngIf="dob.dirty && dob.invalid" class="alert alert-danger">
+                <span *ngIf="dob.errors?.required" > Date of birth is required. </span>
+            </div>
         </div>
 
         <button [attr.disabled]="disbaleSubmit ? '' : null"  type="submit" name="submit" class="btn btn-primary">Registor</button>
