@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
+import { User } from '../model/user.model';
 
 @Component({
   selector: 'app-signup',
@@ -8,14 +10,39 @@ import { Component, OnInit } from '@angular/core';
 export class SignupComponent implements OnInit {
 
   disbaleSubmit:Boolean = false;
-  constructor() { }
+  file:File;
+  uploadForm:FormData;
+  user:User;
+  constructor(private userService:UserService) {
+   }
 
   ngOnInit(): void {
   }
 
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      this.file = event.target.files[0];
+    }
+  }
+
   registerUser(userForm){
-    console.log(userForm);
-    if(userForm.valid) this.disbaleSubmit = true;
+    if(userForm.invalid) return;
+    else {
+      this.uploadForm = new FormData();
+      this.disbaleSubmit = true;
+      this.uploadForm.append("image",this.file);
+      for (const key in userForm.value) {
+        if (Object.prototype.hasOwnProperty.call(userForm.value, key)) {
+          const element = userForm.value[key];
+          if(key === "image") continue;
+          this.uploadForm.append(key,element);
+        }
+      }
+      this.userService.addUser(this.uploadForm).subscribe(
+        (res)=>console.log(res),
+        (err)=>console.log(err)
+      );
+    }
   }
 
   log = (x) => {console.log(x)};
