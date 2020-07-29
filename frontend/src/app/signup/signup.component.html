@@ -9,24 +9,30 @@
             <label  for="name">User Name</label>
             <input ngModel #name="ngModel" required minlength="3" maxlength="25" pattern="[a-zA-Z0-9]+" type="text" name="name" id="name" class="form-control">
             <div *ngIf="name.dirty && name.invalid" class="alert alert-danger">
-                <span *ngIf="name.errors?.required" > name is required </span>
-                <span *ngIf="name.errors?.minlength" > min lenght required is {{ name.errors.minlength.requiredLength}} </span>
-                <span *ngIf="name.errors?.maxlength" > max lenght of name can be {{ name.errors.maxlength.requiredLength}} </span>
-                <span *ngIf="name.errors?.pattern" > name can be only alpha-numeric and without spaces </span>
+                <span *ngIf="name.errors?.required" > User name is required. </span>
+                <span *ngIf="name.errors?.minlength" > Min lenght required is {{ name.errors.minlength.requiredLength}}. </span>
+                <span *ngIf="name.errors?.maxlength" > Max lenght of name can be {{ name.errors.maxlength.requiredLength}}. </span>
+                <span *ngIf="name.errors?.pattern" > User name can be only alpha-numeric and without spaces. </span>
             </div>              
         </div>
         <div class="form-group">
             <label  for="email">Email</label>
             <input ngModel #email="ngModel" required email="true" type="email" name="email" id="email" class="form-control">
             <div *ngIf="email.dirty && email.invalid" class="alert alert-danger">
-                <span *ngIf="email.errors?.required" > email is required </span>
-                <span *ngIf="email.errors?.email" > incorrect email format</span>
+                <span *ngIf="email.errors?.required" > Email is required. </span>
+                <span *ngIf="email.errors?.email" > Incorrect email format.</span>
             </div>
         </div>
 
         <div class="form-group">
             <label  for="password" show>Password</label>
-            <input ngModel required minlength="8" maxlength="25" type="password" name="password" id="password" class="form-control">
+            <input ngModel #password="ngModel" required minlength="8" maxlength="25" pattern=".*[0-9].*" type="password" name="password" id="password" class="form-control">
+            <div *ngIf="password.dirty && password.invalid" class="alert alert-danger">
+                <span *ngIf="password.errors?.required" > Password is required. </span>
+                <span *ngIf="password.errors?.minlength" > Min lenght required is {{ password.errors.minlength.requiredLength}}. </span>
+                <span *ngIf="password.errors?.maxlength" > Max lenght of password can be {{ password.errors.maxlength.requiredLength}}. </span>
+                <span *ngIf="password.errors?.pattern" > Password should contain atleast one Number. </span>
+            </div>              
         </div>
 
         <div class="form-group">
