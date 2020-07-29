@@ -2,23 +2,23 @@ import {Directive, Input} from "@angular/core";
 import {NG_VALIDATORS, Validator,AbstractControl,ValidatorFn , ValidationErrors} from "@angular/forms";
 
 @Directive({
-    selector: "[minRequired]",
+    selector: "[maxRequired]",
     providers: [
-        { provide: NG_VALIDATORS, useExisting: MinValidator, multi: true },
+        { provide: NG_VALIDATORS, useExisting: MaxValidator, multi: true },
     ]
 })
-export class MinValidator implements Validator {
-    @Input()min:Number;    
+export class MaxValidator implements Validator {
+    @Input()max:Number;    
 
     // logic for custome validation
-    validateMinMax(min:Number): ValidatorFn {
+    validateMaxMax(max:Number): ValidatorFn {
       return (c: AbstractControl):ValidationErrors| null  => {
-          return c.value < min? { "min" : {"requiredMin":min}} : null
+          return c.value > max? { "max" : {"requiredMax":max}} : null
         };
     }
 
     // Validator Class Funtion
     validate(c: AbstractControl): ValidationErrors|null {
-      return this.validateMinMax(this.min)(c);
+      return this.validateMaxMax(this.max)(c);
     }
 }

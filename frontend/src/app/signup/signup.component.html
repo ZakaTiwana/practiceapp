@@ -1,6 +1,5 @@
 <article id="signup_article" class="col-md-6">
     <form #userForm="ngForm" (ngSubmit)="registerUser(userForm)">
-        
         <div class="form-group">
             <label for="image">Upload Profile Picture</label>
             <input ngModel #img="ngModel" requireFile type="file" name="image" id="image" class="form-control">    
@@ -40,10 +39,11 @@
 
         <div class="form-group">
             <label  for="age">Your Age</label>
-            <input ngModel #age="ngModel" required min="8" max="150" minRequired="8" type="number" name="age" id="age" class="form-control">
+            <input ngModel #age="ngModel" required min="8" max="150" minRequired="8" maxRequired="150" type="number" name="age" id="age" class="form-control">
             <div *ngIf="age.dirty && age.invalid" class="alert alert-danger">
                 <span *ngIf="age.errors?.required" > Age is required. </span>
-                <span *ngIf="age.errors?.min" > Age should be more than {{age.errors?.min.requiredMin -1}}.</span>
+                <span *ngIf="age.errors?.min" > Age should be more than or equal to {{age.errors?.min.requiredMin}}.</span>
+                <span *ngIf="age.errors?.max" > Age should be less than or equal to {{age.errors?.max.requiredMax}}.</span>
             </div>  
         </div>
 
