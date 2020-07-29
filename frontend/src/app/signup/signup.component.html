@@ -4,7 +4,7 @@
         <div class="form-group">
             <label for="image">Upload Profile Picture</label>
             <input ngModel #img="ngModel" requireFile type="file" name="image" id="image" class="form-control">    
-            <div *ngIf="img.invalid" class="alert alert-danger">
+            <div *ngIf="userForm.submitted && img.invalid " class="alert alert-danger">
                 <span *ngIf="img.errors?.required" > Profile Picture is required. </span>
             </div>
         </div>
