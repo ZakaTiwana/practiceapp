@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -16,9 +15,6 @@ export class SignupComponent implements OnInit {
 
   registerUser(userForm){
     console.log(userForm);
-    console.log(userForm.submitted)
-    console.log(userForm.form)
-    console.log(userForm.valid)
     if(userForm.valid) this.disbaleSubmit = true;
   }
 
