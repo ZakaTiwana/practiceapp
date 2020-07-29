@@ -13,13 +13,15 @@
                 <span *ngIf="name.errors?.minlength" > min lenght required is {{ name.errors.minlength.requiredLength}} </span>
                 <span *ngIf="name.errors?.maxlength" > max lenght of name can be {{ name.errors.maxlength.requiredLength}} </span>
                 <span *ngIf="name.errors?.pattern" > name can be only alpha-numeric and without spaces </span>
-            </div>
-            
-              
+            </div>              
         </div>
         <div class="form-group">
             <label  for="email">Email</label>
-            <input ngModel required email="true" type="email" name="email" id="email" class="form-control">
+            <input ngModel #email="ngModel" required email="true" type="email" name="email" id="email" class="form-control">
+            <div *ngIf="email.dirty && email.invalid" class="alert alert-danger">
+                <span *ngIf="email.errors?.required" > email is required </span>
+                <span *ngIf="email.errors?.email" > incorrect email format</span>
+            </div>
         </div>
 
         <div class="form-group">
