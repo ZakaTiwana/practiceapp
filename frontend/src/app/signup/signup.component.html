@@ -3,7 +3,10 @@
         
         <div class="form-group">
             <label for="image">Upload Profile Picture</label>
-            <input ngModel #img="ngModel" required type="file" name="image" id="image" class="form-control">    
+            <input ngModel #img="ngModel" requireFile type="file" name="image" id="image" class="form-control">    
+            <div *ngIf="img.invalid" class="alert alert-danger">
+                <span *ngIf="img.errors?.required" > Profile Picture is required. </span>
+            </div>
         </div>
         <div class="form-group">
             <label  for="name">User Name</label>
@@ -37,9 +40,10 @@
 
         <div class="form-group">
             <label  for="age">Your Age</label>
-            <input ngModel #age="ngModel" required min="8" max="150" type="number" name="age" id="age" class="form-control">
+            <input ngModel #age="ngModel" required min="8" max="150" minRequired="8" type="number" name="age" id="age" class="form-control">
             <div *ngIf="age.dirty && age.invalid" class="alert alert-danger">
                 <span *ngIf="age.errors?.required" > Age is required. </span>
+                <span *ngIf="age.errors?.min" > Age should be more than {{age.errors?.min.requiredMin -1}}.</span>
             </div>  
         </div>
 

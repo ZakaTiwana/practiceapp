@@ -4,10 +4,15 @@ import {FormsModule} from "@angular/forms"
 
 import { SignupRoutingModule } from './signup-routing.module';
 import { SignupComponent } from './signup.component';
-
+import {FileValidator} from "../../validators/file-input.validator";
+import { MinValidator } from "../../validators/number-input-min.validator";
 
 @NgModule({
-  declarations: [SignupComponent],
+  declarations: [
+    SignupComponent,
+    MinValidator,
+    FileValidator
+  ],
   imports: [
     CommonModule,
     SignupRoutingModule,
