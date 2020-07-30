@@ -34,13 +34,18 @@ export class SignupComponent implements OnInit {
       for (const key in userForm.value) {
         if (Object.prototype.hasOwnProperty.call(userForm.value, key)) {
           const element = userForm.value[key];
-          if(key === "image") continue;
+          if(key === "image") continue; // donot add image
           this.uploadForm.append(key,element);
         }
       }
       this.userService.addUser(this.uploadForm).subscribe(
-        (res)=>console.log(res),
-        (err)=>console.log(err)
+        (res)=>{
+          console.log(res);
+        },
+        (err)=>{
+          this.disbaleSubmit = false;
+          console.log(err.error.message)
+        }
       );
     }
   }

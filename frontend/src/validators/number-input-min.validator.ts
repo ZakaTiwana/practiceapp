@@ -8,7 +8,7 @@ import {NG_VALIDATORS, Validator,AbstractControl,ValidatorFn , ValidationErrors}
     ]
 })
 export class MinValidator implements Validator {
-    @Input()min:Number;    
+    @Input()min:Number; 
 
     // logic for custome validation
     validateMinMax(min:Number): ValidatorFn {
