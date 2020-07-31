@@ -5,5 +5,6 @@ export class User {
         public email: string,
         public image: string,
         public age:Number,
-        public dob: Date) {}
+        public dob: string) {
+        }
 }
